@@ -28,4 +28,8 @@ This repository contains code and file related to UC2 data collection and worklo
 ## Requriements
 
 * Apache NiFi 2.0.0-M2
-* 
+* Custom processor needs to be in ```extensions``` folder
+
+
+## Apache NiFi data flow
+[!20240430.jpg]
