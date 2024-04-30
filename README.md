@@ -32,4 +32,4 @@ This repository contains code and file related to UC2 data collection and worklo
 
 
 ## Apache NiFi data flow
-![DataFlow](20240430_NiFi_dataflow.png)
+![DataFlow](202040430_NiFi_dataflow.png)
