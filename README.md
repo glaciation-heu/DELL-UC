@@ -39,3 +39,4 @@ This repository contains code and file related to UC2 data collection and worklo
 
 ## UC2 ontology for storing YOLO results
 ![UC2Ontology](20240430_ontology.PNG)
+* Use case 2 ontology with some extentions following the upper ontology defined in T6.1
