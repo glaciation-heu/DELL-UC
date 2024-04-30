@@ -33,3 +33,9 @@ This repository contains code and file related to UC2 data collection and worklo
 
 ## Apache NiFi data flow
 ![DataFlow](202040430_NiFi_dataflow.png)
+* ```ListenHTTP``` is listening HTTP requests (e.g., sending JSON files via HTTP from robots)
+* ```ExecuteGroovyScript``` decode base64 encoded images and store in another location specified in ```PutFile```
+* ```Semantification``` is a custom processor for semantifying the YOLO results according to the UC2 ontology below, and store the information into Apache Jena instance (DKG).
+
+## UC2 ontology for storing YOLO results
+![UC2Ontology](20240430_ontology.PNG)
