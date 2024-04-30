@@ -2,14 +2,14 @@
 
 ```python
 .
-├── custom		# Java code for custom processor 
-├── DAYTON.ttl	# dummy data for triple store
+├── custom		            # Java code for custom processor 
+├── DAYTON.ttl	          # dummy data for triple store
 ├── fuseki-configuration  # fuseki configuration file
-├── input		# dummpy input data for data flow test
-├── NiFi_Flow.json	# exported NiFi flow file
+├── input		              # dummpy input data for data flow test
+├── NiFi_Flow.json	      # exported NiFi flow file
 ├── nifi-jsonld-nar-2.0.0-M2.nar # created custom processor
 ├── README.md
-└── simulate.py	# simulation code for workload genration
+└── simulate.py	          # simulation code for workload genration
 ```
 
 
