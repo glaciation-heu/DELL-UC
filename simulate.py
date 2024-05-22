@@ -67,11 +67,11 @@ def process_json(json_file: str, repeat=1, sleep=5000):
 
     
 if __name__ == '__main__':
-    #test_sample = get_test_sample()
-    #process_json(test_sample)
-    for i in glob.glob('../json_files/data_files/*'):
-        print(f'Processing {i}')
-        # Test one json file
-        with open(i) as f:
-            doc = json.load(f)
-            process_json(doc)
+    test_sample = get_test_sample()
+    process_json(test_sample)
+    #for i in glob.glob('../json_files/data_files/*'):
+    #    print(f'Processing {i}')
+    #    # Test one json file
+    #    with open(i) as f:
+    #        doc = json.load(f)
+    #        process_json(doc)

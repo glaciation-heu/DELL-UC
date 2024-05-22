@@ -35,8 +35,9 @@ import org.apache.nifi.processor.util.StandardValidators;
 import org.apache.nifi.processor.io.OutputStreamCallback;
 
 import java.util.*;
-
 import java.io.*;
+import java.net.*;
+import java.net.http.HttpClient;
 
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.DocumentContext;
@@ -60,6 +61,8 @@ import org.apache.jena.rdfconnection.RDFConnectionFuseki;
 import org.apache.jena.rdfconnection.RDFConnectionRemoteBuilder;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.RDFS;
+import org.apache.jena.http.auth.*;
+
 
 @Tags({"semantification"})
 @CapabilityDescription("Semantification and write to the Jena Fuseki")
@@ -185,7 +188,13 @@ public class Semantification extends AbstractProcessor {
                     .addProperty(hasHeight, String.valueOf(((Map)detection.get("bounding_box")).get("height")))
                 ));
         }
-
+        
+        // Authentivation
+        //AuthEnv.get().registerUsernamePassword(URI.create(context.getProperty(DESTINATION).getValue()+"data"), "glaciationnifi", "glaciationnifi");
+        Authenticator authenticator = AuthLib.authenticator("admin", "password");
+        HttpClient httpClient = HttpClient.newBuilder()
+            .authenticator(authenticator)
+            .build();
         // Write to Jena
         RDFConnection connection = RDFConnectionFuseki.create()
                 //.destination("http://localhost:3030/ds/")
@@ -195,6 +204,7 @@ public class Semantification extends AbstractProcessor {
                 .destination(context.getProperty(DESTINATION).getValue())
                 .gspEndpoint(context.getProperty(GSP_ENDPOINT).getValue())
                 .acceptHeaderSelectQuery("application/sparql-results+json, application/sparql-results+xml;q=0.9")
+                .httpClient(httpClient)
                 .build();
         
         // Get String version of the model with JSON-LD format
