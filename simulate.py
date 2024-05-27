@@ -1,3 +1,4 @@
+import argparse
 import base64
 import requests
 import json
@@ -55,9 +56,14 @@ def get_test_sample():
     return TEST
 
 
-def process_json(json_file: str, repeat=1, sleep=5000):
+def process_json(json_file: str, robotId, repeat=1, sleep=5000):
     """ Read JSON and do HTTP POST request to NiFi """
     
+    json_file['robot_id'] = 'robot_' + robotId
+    json_file['camera_id'] = 'r' + robotId + '_' + 'c' + json_file['camera_id'].split('_')[1]
+
+    # print(json_file)
+
     # POST
     r = requests.post(
         'http://localhost:8888/contentListener',
@@ -67,11 +73,18 @@ def process_json(json_file: str, repeat=1, sleep=5000):
 
     
 if __name__ == '__main__':
-    test_sample = get_test_sample()
-    process_json(test_sample)
-    #for i in glob.glob('../json_files/data_files/*'):
-    #    print(f'Processing {i}')
-    #    # Test one json file
-    #    with open(i) as f:
-    #        doc = json.load(f)
-    #        process_json(doc)
+    parser = argparse.ArgumentParser(description='Simulate streaming data from robot, seding a set of JSON files to Apache NiFi')
+    parser.add_argument('-t', '--test', action='store_true', help='test with one sample')
+    parser.add_argument('--robotId', default='01', help='change robotId before adding data')
+    args = parser.parse_args()
+
+    if args.test:
+        test_sample = get_test_sample()
+        process_json(test_sample, robotId=args.robotId)
+    else:
+        for idx, i in enumerate(glob.glob('../json_files/data_files/*')):
+            print(f'Processing {idx, i}')
+            # Test one json file
+            with open(i) as f:
+                doc = json.load(f)
+                process_json(doc, robotId=args.robotId)

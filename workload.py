@@ -1,3 +1,4 @@
+import argparse
 import os
 import cv2
 import time
@@ -44,32 +45,41 @@ def run(endpoint: str, save_folder: str, repeat: int = 1):
                 uuid = r['frame']['value'].split('#')[1]
                 # Get label
                 label = r['label']['value']
-                if label == 'person':
-                    # Get image location
-                    file_loc = os.path.join(r['loc']['value'], uuid)
-                    image = cv2.imread(file_loc)
-                    # Draw bounding box
-                    new_img = cv2.rectangle(
-                        image, 
-                        (int(r['x']['value']), int(r['y']['value'])),
-                        (int(r['x']['value'])+int(r['w']['value']), int(r['y']['value'])+int(r['h']['value'])),
-                        (0, 255, 0),
-                        5
-                    )
-                    # Save into separate folder
-                    cv2.imwrite(
-                        os.path.join(save_folder, uuid+'.png'), new_img
-                    ) 
+                #if label == 'person':
+                # Get image location
+                file_loc = os.path.join(r['loc']['value'], uuid)
+                image = cv2.imread(file_loc)
+                # Draw bounding box
+                new_img = cv2.rectangle(
+                    image, 
+                    (int(r['x']['value']), int(r['y']['value'])),
+                    (int(r['x']['value'])+int(r['w']['value']), int(r['y']['value'])+int(r['h']['value'])),
+                    (0, 255, 0),
+                    5
+                )
+                # Save into separate folder
+                cv2.imwrite(
+                    os.path.join(save_folder, uuid+'.png'), new_img
+                ) 
     except Exception as e:
         print(e)
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-e', '--endpoint', default='http://10.244.0.37:3030/ds/query')
+    parser.add_argument('-d', '--destination', defualt='../people_detection_results')
+    parser.add_argument('-r', '--repeat', default=1)
+    args = parser.parse_args()
+
     start_time = time.perf_counter()
+
+    ## Workload
     run(
-        'http://localhost:3030/ds/query', 
-        '../people_detection_results',
-        1000
+        args.endpoint,
+        args.destination,
+        args.repeat
     )
+
     end_time = time.perf_counter()
     print(f'{end_time - start_time} seconds elapsed')
 
