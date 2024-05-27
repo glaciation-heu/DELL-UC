@@ -173,7 +173,7 @@ public class Semantification extends AbstractProcessor {
         frameResource.addProperty(hasTimestamp, timestamp);
         frameResource.addProperty(fileLocation, flowFile.getAttribute("directory"));
         frameResource.addProperty(RDF.type, yoloResultResource);
-        robotResource.addProperty(makesMeasurement, yoloResultResource);
+        robotResource.addProperty(makesMeasurement, frameResource);
         robotResource.addProperty(consistsOf, cameraResource);
         
         for (Map<String, Object> detection: detections) {
