@@ -67,7 +67,7 @@ def run(endpoint: str, save_folder: str, repeat: int = 1):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-e', '--endpoint', default='http://10.244.0.37:3030/ds/query')
-    parser.add_argument('-d', '--destination', defualt='../people_detection_results')
+    parser.add_argument('-d', '--destination', default='../people_detection_results')
     parser.add_argument('-r', '--repeat', default=1)
     args = parser.parse_args()
 
