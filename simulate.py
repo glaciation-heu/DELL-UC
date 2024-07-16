@@ -66,7 +66,7 @@ def process_json(json_file: str, robotId, repeat=1, sleep=5000):
 
     # POST
     r = requests.post(
-        'http://localhost:8888/contentListener',
+        'http://localhost:8889/contentListener',
         json=json_file
     )
     print(r.status_code)
