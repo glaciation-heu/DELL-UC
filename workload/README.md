@@ -7,7 +7,7 @@ This repository contains a set of workloads designed for analyzing and optimizin
 Below is an overview of the available workloads:
 
 ### 1. Workload presented during midterm review
-- **Directory**: [`workload_test`](https://github.com/your-repo/workloads/workload_test)
+- **Directory**: [`workload_test`](workloads/workload_test)
 - **Purpose**:
 
 ### 2. **Object Frequency and Distribution Analysis**
