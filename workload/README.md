@@ -6,7 +6,7 @@ This repository contains a set of workloads designed for analyzing and optimizin
 
 Below is an overview of the available workloads:
 
-### 1. Workload presented during midterm review
+### 1. Workload presented during midterm review (DO NOT USE ON CLUSTER)
 - **Directory**: [`workload_test`](workloads/workload_test)
 - **Purpose**:
 
