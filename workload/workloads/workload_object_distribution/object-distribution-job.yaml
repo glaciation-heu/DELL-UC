@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: object-distribution-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: object-distribution
+        image: workload-object-distribution:latest  # Use the locally built image
+        imagePullPolicy: Never  # Prevent Kubernetes from pulling the image from a remote registry
+      restartPolicy: Never
+

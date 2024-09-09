@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: operational-efficiency-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: operational-efficiency
+        image: workload-operational-efficiency:latest  # Use the locally built image
+        imagePullPolicy: Never  # Prevent Kubernetes from pulling the image from a remote registry
+      restartPolicy: Never
+
