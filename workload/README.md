@@ -11,7 +11,7 @@ Below is an overview of the available workloads:
 - **Purpose**:
 
 ### 2. **Object Frequency and Distribution Analysis**
-- **Directory**: [`workload_object_distribution`](https://github.com/your-repo/workloads/workload_object_distribution)
+- **Directory**: [`workload_object_distribution`](workloads/workload_object_distribution)
 - **Purpose**: Understand the frequency and distribution of detected objects across different areas on the floor.
 - **Key Insights**:
 	- Identify commonly detected objects (e.g., tools, machines, vehicles) to track the availability and utilization of assets.
@@ -22,7 +22,7 @@ Below is an overview of the available workloads:
 	- Distribution of high-priority objects (e.g., safety gear, medical equipment).
 
 ### 3. **Operational Efficiency Analysis**
-- **Directory**: [`workload_operational_efficiency`](https://github.com/your-repo/workloads/workload_operational_efficiency)
+- **Directory**: [`workload_operational_efficiency`](workloads/workload_operational_efficiency)
 - **Purpose**: Measure the operational efficiency by tracking object movements and analyzing workflows.
 - **Key Insights**:
 	- Monitor the flow of items like carts, vehicles, and materials across the manufacturing floor to detect inefficiencies or bottlenecks.
@@ -34,7 +34,7 @@ Below is an overview of the available workloads:
 	- Average time for tools to be used and returned to storage.
 
 ### 4. **Anomaly Detection**
-- **Directory**: [`workload_anomaly_detection`](https://github.com/your-repo/workloads/workload_anomaly_detection)
+- **Directory**: [`workload_anomaly_detection`](workloads/workload_anomaly_detection)
 - **Purpose**: Detect unusual patterns that could indicate operational issues, safety risks, or process deviations.
 - **Key Insights**:
 	- Identify out-of-place objects, such as a ladder in a restricted zone or a vehicle in a non-vehicle area.
@@ -46,7 +46,7 @@ Below is an overview of the available workloads:
 	- Frequency of out-of-place objects or items detected in restricted zones.
 
 ### 5. **Human-Object Interaction Analysis**
-- **Directory**: [`workload_human_object_interaction`](https://github.com/your-repo/workloads/workload_human_object_interaction)
+- **Directory**: [`workload_human_object_interaction`](workloads/workload_human_object_interaction)
 - **Purpose**: Analyze interactions between workers and detected objects to improve efficiency, safety, and ergonomics.
 - **Key Insights**:
 	- Track the use of tools and machinery by workers to ensure proper handling and safety.

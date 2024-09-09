@@ -1,0 +1,85 @@
+import requests
+from collections import defaultdict
+
+# Define the URL for the metadata service's SPARQL endpoint
+METADATA_SERVICE_URL = "http://metadataservice.validation/api/v0/graph"
+
+# Step 1: Construct the SPARQL Query
+def construct_sparql_query():
+    sparql_query = """
+    PREFIX ex: <http://example.org/>
+    SELECT ?object ?zone ?timestamp
+    WHERE {
+      ?detection ex:objectDetected ?object ;
+                 ex:zone ?zone ;
+                 ex:timestamp ?timestamp .
+    }
+    """
+    return sparql_query
+
+# Step 2: Submit the SPARQL query to the metadata service using GET request
+def submit_sparql_query(sparql_query):
+    try:
+        response = requests.get(METADATA_SERVICE_URL, params={'query': sparql_query}, headers={'Accept': 'application/json'})
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"Error querying metadata service: {e}")
+        return None
+
+# Step 3: Process the response data to calculate frequency and distribution
+def process_response(data):
+    object_frequency = defaultdict(int)
+    zone_distribution = defaultdict(lambda: defaultdict(int))
+    high_priority_objects = ["helmet", "glove", "medical_kit", "fire_extinguisher"]
+
+    for result in data.get("results", {}).get("bindings", []):
+        obj = result.get("object", {}).get("value")
+        zone = result.get("zone", {}).get("value")
+
+        if obj and zone:
+            # Count the total occurrences of each object
+            object_frequency[obj] += 1
+
+            # Count the occurrences of objects in specific zones
+            zone_distribution[zone][obj] += 1
+
+    return object_frequency, zone_distribution, high_priority_objects
+
+# Step 4: Generate insights and print metrics
+def generate_insights(object_frequency, zone_distribution, high_priority_objects):
+    print("---- Object Frequency Across All Zones ----")
+    for obj, count in object_frequency.items():
+        print(f"{obj}: {count} detections")
+
+    print("\n---- Object Distribution by Zone ----")
+    for zone, objects in zone_distribution.items():
+        print(f"Zone {zone}:")
+        for obj, count in objects.items():
+            print(f"  {obj}: {count} detections")
+
+    print("\n---- High-Priority Object Distribution ----")
+    for zone, objects in zone_distribution.items():
+        print(f"Zone {zone}:")
+        for obj, count in objects.items():
+            if obj in high_priority_objects:
+                print(f"  {obj}: {count} detections (high priority)")
+
+# Main function to run the workload
+def main():
+    # Step 1: Construct the SPARQL query
+    sparql_query = construct_sparql_query()
+
+    # Step 2: Submit the query to the metadata service and get the response
+    response_data = submit_sparql_query(sparql_query)
+
+    if response_data:
+        # Step 3: Process the response data
+        object_frequency, zone_distribution, high_priority_objects = process_response(response_data)
+
+        # Step 4: Generate insights and print the results
+        generate_insights(object_frequency, zone_distribution, high_priority_objects)
+
+if __name__ == "__main__":
+    main()
+
