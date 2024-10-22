@@ -1,0 +1,5 @@
+resources:
+  - human-object-interaction-job.yaml
+
+patchesStrategicMerge:
+  - human-object-interaction-job-patch.yaml

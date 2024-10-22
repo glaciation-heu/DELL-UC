@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: anomaly-detection-job-v2
+spec:
+  template:
+    spec:
+      containers:
+      - name: workload-container
+        image: ghcr.io/glaciation-heu/dell-uc/workload_anomaly_detection:latest
+        command: ["python", "/app/workload_anomaly_detection.py"]
+      nodeSelector:
+        kubernetes.io/hostname: glaciation-worker01
+

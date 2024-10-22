@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: test-job-v2
+spec:
+  template:
+    spec:
+      containers:
+      - name: test-container
+        image: ghcr.io/glaciation-heu/dell-uc/workload_test:latest
+        imagePullPolicy: IfNotPresent
+        command: ["python", "/app/workload.py"]  # Moved inside the container definition
+      restartPolicy: Never

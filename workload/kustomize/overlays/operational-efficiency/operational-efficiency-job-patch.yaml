@@ -1,13 +1,13 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: operational-efficiency-job
+  name: operational-efficiency-job-v2
 spec:
   template:
     spec:
       containers:
       - name: operational-efficiency
-        image: pournima2024/workload_operational_efficiency:latest  # Use the local Docker registry
+        image: ghcr.io/glaciation-heu/dell-uc/workload_operational_efficiency:latest # Use the local Docker registry
         imagePullPolicy: IfNotPresent
       restartPolicy: Never
       nodeSelector:

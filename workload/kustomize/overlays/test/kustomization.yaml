@@ -1,0 +1,6 @@
+resources:
+  - test-job.yaml
+
+patchesStrategicMerge:
+  - test-job-patch.yaml
+

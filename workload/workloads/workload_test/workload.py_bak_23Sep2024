@@ -7,20 +7,21 @@ import logging
 
 from SPARQLWrapper import SPARQLWrapper, JSON
 
+
 logger = logging.getLogger(__name__)
 
-# Define the default URL for the metadata service's SPARQL endpoint
-DEFAULT_METADATA_SERVICE_URL = "http://metadata.uc2/api/v0/graph"
+# Define the URL for the metadata service's SPARQL endpoint
+METADATA_SERVICE_URL = "http://metadataservice.validation/api/v0/graph"
 
 def run(
-    endpoint: str,
-    save_folder: str,
-    repeat: int = 1,
+    endpoint: str, 
+    save_folder: str, 
+    repeat: int = 1, 
     save: bool = True,
     test: bool = False,
 ):
-    """Run workload based on semantified results on Fuseki
-
+    """ Run workload based on semantified results on Fuseki
+        
     Parameters:
         endpoint: SPARQL endpoint to run query
         save_folder: Where to save the annotated files with detected people
@@ -30,7 +31,7 @@ def run(
     if test:
         logger.info('running in test mode...')
         image = cv2.imread('test.jpg')
-
+        
         for _ in range(repeat):
             for box in range(random.randint(1, 5)):
                 # Draw bounding box
@@ -38,7 +39,7 @@ def run(
                 end_x = start_x + random.randint(0, image.shape[0] - start_x)
                 end_y = start_y + random.randint(0, image.shape[1] - start_y)
                 new_img = cv2.rectangle(
-                    image,
+                    image, 
                     (start_x, start_y),
                     (end_x, end_y),
                     (0, 255, 0),
@@ -48,12 +49,12 @@ def run(
                     # Save into separate folder
                     cv2.imwrite(
                         'output.png', new_img
-                    )
-
+                    ) 
+        
     else:
         sparql = SPARQLWrapper(endpoint)
         sparql.setReturnFormat(JSON)
-        # Query frames inserted into Fuseki
+        ## Query frames inserted into Fuseki
         sparql.setQuery("""
             PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
             PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -65,7 +66,7 @@ def run(
             ?frame glc:fileLocation ?loc .
             ?frame glc:hasDetection ?detection .
             ?detection glc:hasLabel ?label;
-                           glc:hasConfidence ?conf .
+              		   glc:hasConfidence ?conf .
             ?detection glc:hasBBox ?bbox .
             ?bbox glc:hasX ?x;
                   glc:hasY ?y;
@@ -74,7 +75,7 @@ def run(
             }
         """)
 
-        try:
+        try: 
             for i in range(repeat):
                 print(f'{i}-th repeat')
                 res = sparql.queryAndConvert()
@@ -83,12 +84,13 @@ def run(
                     uuid = r['frame']['value'].split('#')[1]
                     # Get label
                     label = r['label']['value']
+                    #if label == 'person':
                     # Get image location
                     file_loc = os.path.join(r['loc']['value'], uuid)
                     image = cv2.imread(file_loc)
                     # Draw bounding box
                     new_img = cv2.rectangle(
-                        image,
+                        image, 
                         (int(r['x']['value']), int(r['y']['value'])),
                         (int(r['x']['value'])+int(r['w']['value']), int(r['y']['value'])+int(r['h']['value'])),
                         (0, 255, 0),
@@ -98,31 +100,27 @@ def run(
                         # Save into separate folder
                         cv2.imwrite(
                             os.path.join(save_folder, uuid+'.png'), new_img
-                        )
+                        ) 
         except Exception as e:
             print(e)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        '-u', '--url',
-        default=os.getenv('METADATA_SERVICE_URL', DEFAULT_METADATA_SERVICE_URL),  # Check environment variable, then fallback to default
-        help="SPARQL endpoint to run query. Defaults to the value of METADATA_SERVICE_URL environment variable, or http://metadata.uc2/api/v0/graph"
-    )
+    parser.add_argument('-e', '--endpoint', default='http://10.244.0.37:3030/ds/query')
     parser.add_argument('-d', '--destination', default='/home/ubuntu/UC/data/results')
     parser.add_argument('-r', '--repeat', type=int, default=100)
     parser.add_argument('-s', '--save', action='store_true')
     parser.add_argument('-t', '--test', action='store_true')
     args = parser.parse_args()
-
+    
     logging.basicConfig(level=logging.INFO)
 
     start_time = time.perf_counter()
 
-    # Workload
+    ## Workload
     run(
-        args.url,
+        args.endpoint,
         args.destination,
         args.repeat,
         args.save,

@@ -1,0 +1,5 @@
+resources:
+  - object-distribution-job.yaml
+
+patchesStrategicMerge:
+  - object-distribution-job-patch.yaml

@@ -1,8 +1,17 @@
-FROM python:3.11-alpine
+# workload/workloads/workload_test/Dockerfile
+
+FROM python:3.9-slim
+
 WORKDIR /app
-COPY . /app
-RUN mkdir -p /home/ubuntu/UC/data
-RUN apk update
-RUN apk add linux-headers make automake gcc g++ subversion python3-dev
-RUN pip install -r requirements.txt
-CMD ["python", "./workload.py", "-s"]
+
+# Install dependencies
+COPY requirements.txt /app/
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy workload script
+COPY workload/workloads/workload_test/workload.py /app/
+
+RUN apt-get update && apt-get install -y libgl1-mesa-glx libglib2.0-0
+
+# Run the workload
+CMD ["python", "workload.py"]

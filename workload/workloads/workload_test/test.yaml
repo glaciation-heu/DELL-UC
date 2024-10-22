@@ -1,14 +1,15 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: operational-efficiency-job
+  name: test-job
 spec:
   template:
     spec:
       containers:
-      - name: operational-efficiency
-        image: pournima2024/workload_operational_efficiency:latest  # Use the local Docker registry
+      - name: test-container  
+        image: pournima2024/workload_test:latest
         imagePullPolicy: IfNotPresent
+        command: ["python", "/app/workload.py"]  # Moved inside the container definition
       restartPolicy: Never
       nodeSelector:
         kubernetes.io/hostname: glaciation-worker01

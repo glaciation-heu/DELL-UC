@@ -1,15 +1,14 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: operational-efficiency-job
+  name: human-object-interaction-job-v2
 spec:
   template:
     spec:
       containers:
-      - name: operational-efficiency
-        image: pournima2024/workload_operational_efficiency:latest  # Use the local Docker registry
+      - name: human-object-interaction
+        image:  ghcr.io/glaciation-heu/dell-uc/workload_human_object_interaction:latest  # Use the local Docker registry
         imagePullPolicy: IfNotPresent
       restartPolicy: Never
       nodeSelector:
         kubernetes.io/hostname: glaciation-worker01
-

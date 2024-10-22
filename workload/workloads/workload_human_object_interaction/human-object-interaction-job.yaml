@@ -7,7 +7,9 @@ spec:
     spec:
       containers:
       - name: human-object-interaction
-        image: workload-human-object-interaction:latest  # Use the locally built image
-        imagePullPolicy: Never  # Prevent Kubernetes from trying to pull the image from a registry
+        image:  pournima2024/workload_human_object_interaction:latest  # Use the local Docker registry
+        imagePullPolicy: IfNotPresent
       restartPolicy: Never
+      nodeSelector:
+        kubernetes.io/hostname: glaciation-worker01
 

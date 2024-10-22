@@ -1,0 +1,6 @@
+resources:
+  - operational-efficiency-job.yaml
+
+patchesStrategicMerge:
+  - operational-efficiency-job-patch.yaml
+

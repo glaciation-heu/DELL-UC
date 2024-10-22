@@ -1,39 +1,27 @@
-import os
-import argparse
 import requests
 from collections import defaultdict
 
-# Define function to parse command-line arguments
-def parse_arguments():
-    parser = argparse.ArgumentParser(description="Run the workload with configurable metadata service URL")
-    parser.add_argument(
-        "--url",
-        type=str,
-        default=None,  # Default is None; will fall back to environment variable or hardcoded value later
-        help="Metadata service URL"
-    )
-    return parser.parse_args()
+# Define the URL for the metadata service's SPARQL endpoint
+METADATA_SERVICE_URL = "http://metadata.uc2/api/v0/graph"
 
 # Step 1: Construct the SPARQL Query
 def construct_sparql_query():
     sparql_query = """
-    SELECT DISTINCT ?type WHERE {
-    ?s a ?type .
-    } LIMIT 10
+    PREFIX ex: <http://example.org/>
+    SELECT ?object ?zone ?timestamp
+    WHERE {
+      ?detection ex:objectDetected ?object ;
+                 ex:zone ?zone ;
+                 ex:timestamp ?timestamp .
+    }
     """
     return sparql_query
 
 # Step 2: Submit the SPARQL query to the metadata service using GET request
-def submit_sparql_query(sparql_query, metadata_service_url):
+def submit_sparql_query(sparql_query):
     try:
-        print("SPARQL Query being sent:", sparql_query)  # Log the query being submitted
-        response = requests.get(metadata_service_url, params={'query': sparql_query}, headers={'Accept': 'application/json'})
+        response = requests.get(METADATA_SERVICE_URL, params={'query': sparql_query}, headers={'Accept': 'application/json'})
         response.raise_for_status()
-
-        # Add debug print statements to log the response
-        print("Response status code:", response.status_code)  # Log the HTTP status code
-        print("Response text:", response.text)  # Log the raw response text
-
         return response.json()
     except requests.exceptions.RequestException as e:
         print(f"Error querying metadata service: {e}")
@@ -79,18 +67,11 @@ def generate_insights(object_frequency, zone_distribution, high_priority_objects
 
 # Main function to run the workload
 def main():
-    args = parse_arguments()  # Parse command-line arguments
-
-    # Check if the command-line argument is provided, then check environment variable, then fallback to default
-    metadata_service_url = args.url or os.getenv("METADATA_SERVICE_URL", "http://metadata.uc2/api/v0/graph")
-
-    print(f"Using Metadata Service URL: {metadata_service_url}")
-
     # Step 1: Construct the SPARQL query
     sparql_query = construct_sparql_query()
 
     # Step 2: Submit the query to the metadata service and get the response
-    response_data = submit_sparql_query(sparql_query, metadata_service_url)
+    response_data = submit_sparql_query(sparql_query)
 
     if response_data:
         # Step 3: Process the response data

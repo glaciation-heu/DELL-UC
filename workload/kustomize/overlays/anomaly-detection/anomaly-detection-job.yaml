@@ -1,0 +1,12 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: anomaly-detection-job-v2
+spec:
+  template:
+    spec:
+      containers:
+      - name: anomaly-detection
+        image: ghcr.io/glaciation-heu/dell-uc/workload-anomaly-detection:latest 
+        imagePullPolicy: IfNotPresent 
+      restartPolicy: Never
