@@ -38,5 +38,5 @@ This repository contains code and file related to UC2 data collection and worklo
 * ```Semantification``` is a custom processor for semantifying the YOLO results according to the UC2 ontology below, and store the information into Apache Jena instance (DKG).
 
 ## UC2 ontology for storing YOLO results
-![UC2Ontology](20240430_ontology.PNG)
+![UC2Ontology](20241023_ontology.png)
 * Use case 2 ontology with some extentions following the upper ontology defined in T6.1
