@@ -18,21 +18,29 @@ def parse_arguments():
     )
     return parser.parse_args()
 
+
 # Step 1: Construct the SPARQL Query
 def construct_sparql_query():
     sparql_query = """
     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
     PREFIX glc: <https://glaciation-project.eu/MetadataReferenceModel#>
+    PREFIX saref: <https://saref.etsi.org/core/>
+
     SELECT * WHERE {
-        { GRAPH ?g {
-            ?s glc:detections ?detections .
-            ?detections glc:name ?obj .
+        { GRAPH ?g 
+            {
+            ?s saref:hasIdentifier ?robotId .
+            ?s glc:hasSubResource ?yolo .
+            ?yolo glc:makesMeasurement ?m .
+            ?m saref:relatesToProperty glc:name .
+            ?m saref:hasValue ?v .
             }
-        }
-    }
+        } 
+    } LIMIT 10
     """
     return sparql_query
+
 
 # Step 2: Submit the SPARQL query to the metadata service using GET request
 def submit_sparql_query(sparql_query, metadata_service_url):
@@ -44,6 +52,7 @@ def submit_sparql_query(sparql_query, metadata_service_url):
         print(f"Error querying metadata service: {e}")
         return None
 
+
 # Step 3: Process the response data to calculate frequency and distribution
 def process_response(data):
     object_frequency = defaultdict(int)
@@ -51,8 +60,9 @@ def process_response(data):
     high_priority_objects = ["person", "chair"]
 
     for result in data.get("results", {}).get("bindings", []):
-        obj = result.get("obj", {}).get("value")
-        zone = result.get("s", {}).get("value").split('/')[-1]
+        obj = result.get("v", {}).get("value")
+        zone = result.get("robotId", {}).get("value")#.split('/')[-1]
+        print(f'Zone: {zone}')
 
         if obj and zone:
             # Count the total occurrences of each object
@@ -62,6 +72,7 @@ def process_response(data):
             zone_distribution[zone][obj] += 1
 
     return object_frequency, zone_distribution, high_priority_objects
+
 
 # Step 4: Generate insights and print metrics
 def generate_insights(object_frequency, zone_distribution, high_priority_objects):
@@ -98,6 +109,7 @@ def visualize(stats: dict, title: str='Object distribution'):
     plt.savefig('_'.join(title.split())+'.png')
     plt.close()
 
+
 # Main function to run the workload
 def main():
     # Parse command-line arguments
@@ -114,6 +126,8 @@ def main():
 
     # Step 2: Submit the query to the metadata service and get the response
     response_data = submit_sparql_query(sparql_query, metadata_service_url)
+    print(f'Response')
+    print(response_data)
 
     if response_data:
         # Step 3: Process the response data
@@ -126,6 +140,7 @@ def main():
     for zone, stats in zone_distribution.items():
         visualize(stats, f'Object distribution for zone: {zone}')
     print(f'{time.perf_counter()-start_time}s elapsed')
+
 
 if __name__ == "__main__":
     main()
