@@ -122,17 +122,17 @@ def main(
                 json_data = json.dumps(expanded)
     
                 # Send the JSON data to the Apache NiFi endpoint
-                response = requests.post(
-                    nifi_url, 
-                    data=json_data, 
-                    headers={"Content-Type": "application/json"}
-                )
-                
-                # Check if the request was successful
-                if response.status_code == 200:
-                    print(f"Successfully sent {filename} from {subdir} to Apache NiFi.")
-                else:
-                    print(f"Failed to send {filename} from {subdir}. Status code: {response.status_code}")
+                #response = requests.post(
+                #    nifi_url, 
+                #    data=json_data, 
+                #    headers={"Content-Type": "application/json"}
+                #)
+                #
+                ## Check if the request was successful
+                #if response.status_code == 200:
+                #    print(f"Successfully sent {filename} from {subdir} to Apache NiFi.")
+                #else:
+                #    print(f"Failed to send {filename} from {subdir}. Status code: {response.status_code}")
                 
             if test_mode:
                 break

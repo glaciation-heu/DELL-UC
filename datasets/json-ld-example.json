@@ -1,0 +1,547 @@
+{
+  "@type": [
+    "https://saref.etsi.org/core/Device"
+  ],
+  "https://glaciation-project.eu/MetadataReferenceModel#hasSubResource": [
+    {
+      "@type": [
+        "https://glaciation-project.eu/MetadataReferenceModel#YOLO"
+      ],
+      "https://glaciation-project.eu/MetadataReferenceModel#makesMeasurement": [
+        {
+          "@type": [
+            "https://glaciation-project.eu/MetadataReferenceModel#Measurement"
+          ],
+          "https://saref.etsi.org/core/hasValue": [
+            {
+              "@value": 0
+            }
+          ],
+          "https://saref.etsi.org/core/relatesToProperty": [
+            {
+              "@id": "https://glaciation-project.eu/MetadataReferenceModel#class",
+              "@type": [
+                "https://saref.etsi.org/core/Property"
+              ]
+            }
+          ]
+        },
+        {
+          "@type": [
+            "https://glaciation-project.eu/MetadataReferenceModel#Measurement"
+          ],
+          "https://saref.etsi.org/core/hasValue": [
+            {
+              "@value": "person"
+            }
+          ],
+          "https://saref.etsi.org/core/relatesToProperty": [
+            {
+              "@id": "https://glaciation-project.eu/MetadataReferenceModel#name",
+              "@type": [
+                "https://saref.etsi.org/core/Property"
+              ]
+            }
+          ]
+        },
+        {
+          "@type": [
+            "https://glaciation-project.eu/MetadataReferenceModel#Measurement"
+          ],
+          "https://saref.etsi.org/core/hasValue": [
+            {
+              "@value": 102.17625427246094
+            }
+          ],
+          "https://saref.etsi.org/core/relatesToProperty": [
+            {
+              "@id": "https://glaciation-project.eu/MetadataReferenceModel#x1",
+              "@type": [
+                "https://saref.etsi.org/core/Property"
+              ]
+            }
+          ]
+        },
+        {
+          "@type": [
+            "https://glaciation-project.eu/MetadataReferenceModel#Measurement"
+          ],
+          "https://saref.etsi.org/core/hasValue": [
+            {
+              "@value": 222.59945678710938
+            }
+          ],
+          "https://saref.etsi.org/core/relatesToProperty": [
+            {
+              "@id": "https://glaciation-project.eu/MetadataReferenceModel#x2",
+              "@type": [
+                "https://saref.etsi.org/core/Property"
+              ]
+            }
+          ]
+        },
+        {
+          "@type": [
+            "https://glaciation-project.eu/MetadataReferenceModel#Measurement"
+          ],
+          "https://saref.etsi.org/core/hasValue": [
+            {
+              "@value": 200.03683471679688
+            }
+          ],
+          "https://saref.etsi.org/core/relatesToProperty": [
+            {
+              "@id": "https://glaciation-project.eu/MetadataReferenceModel#y1",
+              "@type": [
+                "https://saref.etsi.org/core/Property"
+              ]
+            }
+          ]
+        },
+        {
+          "@type": [
+            "https://glaciation-project.eu/MetadataReferenceModel#Measurement"
+          ],
+          "https://saref.etsi.org/core/hasValue": [
+            {
+              "@value": 344.1629943847656
+            }
+          ],
+          "https://saref.etsi.org/core/relatesToProperty": [
+            {
+              "@id": "https://glaciation-project.eu/MetadataReferenceModel#y2",
+              "@type": [
+                "https://saref.etsi.org/core/Property"
+              ]
+            }
+          ]
+        }
+      ],
+      "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+        {
+          "@type": [
+            "https://glaciation-project.eu/MetadataReferenceModel#MeasuringResource"
+          ]
+        }
+      ]
+    }
+  ],
+  "https://saref.etsi.org/core/hasDeviceKind": [
+    {
+      "@type": [
+        "https://saref.etsi.org/core/Sensor"
+      ],
+      "https://saref.etsi.org/core/hasProperty": [
+        {
+          "@id": "https://glaciation-project.eu/MetadataReferenceModel#/SensorAspectRatio",
+          "@type": [
+            "https://saref.etsi.org/core/Property"
+          ],
+          "https://saref.etsi.org/core/hasPropertyValue": [
+            {
+              "@type": [
+                "https://saref.etsi.org/core/PropertyValue"
+              ],
+              "https://saref.etsi.org/core/hasValue": [
+                {
+                  "@value": "8:5"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@id": "https://glaciation-project.eu/MetadataReferenceModel#/Format",
+          "@type": [
+            "https://saref.etsi.org/core/Property"
+          ],
+          "https://saref.etsi.org/core/hasPropertyValue": [
+            {
+              "@type": [
+                "https://saref.etsi.org/core/PropertyValue"
+              ],
+              "https://saref.etsi.org/core/hasValue": [
+                {
+                  "@value": "10-bit RAW"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@id": "https://glaciation-project.eu/MetadataReferenceModel#/FNumber",
+          "@type": [
+            "https://saref.etsi.org/core/Property"
+          ],
+          "https://saref.etsi.org/core/hasPropertyValue": [
+            {
+              "@type": [
+                "https://saref.etsi.org/core/PropertyValue"
+              ],
+              "https://saref.etsi.org/core/hasValue": [
+                {
+                  "@value": "f/2.0"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@id": "https://glaciation-project.eu/MetadataReferenceModel#/FocalLength",
+          "@type": [
+            "https://saref.etsi.org/core/Property"
+          ],
+          "https://saref.etsi.org/core/hasPropertyValue": [
+            {
+              "@type": [
+                "https://saref.etsi.org/core/PropertyValue"
+              ],
+              "https://saref.etsi.org/core/hasValue": [
+                {
+                  "@value": "1.93mm"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@id": "https://glaciation-project.eu/MetadataReferenceModel#/FilterType",
+          "@type": [
+            "https://saref.etsi.org/core/Property"
+          ],
+          "https://saref.etsi.org/core/hasPropertyValue": [
+            {
+              "@type": [
+                "https://saref.etsi.org/core/PropertyValue"
+              ],
+              "https://saref.etsi.org/core/hasValue": [
+                {
+                  "@value": "None"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@id": "https://glaciation-project.eu/MetadataReferenceModel#/Focus",
+          "@type": [
+            "https://saref.etsi.org/core/Property"
+          ],
+          "https://saref.etsi.org/core/hasPropertyValue": [
+            {
+              "@type": [
+                "https://saref.etsi.org/core/PropertyValue"
+              ],
+              "https://saref.etsi.org/core/hasValue": [
+                {
+                  "@value": "Fixed"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@id": "https://glaciation-project.eu/MetadataReferenceModel#/ShutterType",
+          "@type": [
+            "https://saref.etsi.org/core/Property"
+          ],
+          "https://saref.etsi.org/core/hasPropertyValue": [
+            {
+              "@type": [
+                "https://saref.etsi.org/core/PropertyValue"
+              ],
+              "https://saref.etsi.org/core/hasValue": [
+                {
+                  "@value": "Global shutter"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@id": "https://glaciation-project.eu/MetadataReferenceModel#/SignalInterface",
+          "@type": [
+            "https://saref.etsi.org/core/Property"
+          ],
+          "https://saref.etsi.org/core/hasPropertyValue": [
+            {
+              "@type": [
+                "https://saref.etsi.org/core/PropertyValue"
+              ],
+              "https://saref.etsi.org/core/hasValue": [
+                {
+                  "@value": "MIPI CSI-2, 2X lanes"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@id": "https://glaciation-project.eu/MetadataReferenceModel#/HorizontalFieldOfView",
+          "@type": [
+            "https://saref.etsi.org/core/Property"
+          ],
+          "https://saref.etsi.org/core/hasPropertyValue": [
+            {
+              "@type": [
+                "https://saref.etsi.org/core/PropertyValue"
+              ],
+              "https://saref.etsi.org/core/hasValue": [
+                {
+                  "@value": "91.2\u00b0"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@id": "https://glaciation-project.eu/MetadataReferenceModel#/VerticalFieldOfView",
+          "@type": [
+            "https://saref.etsi.org/core/Property"
+          ],
+          "https://saref.etsi.org/core/hasPropertyValue": [
+            {
+              "@type": [
+                "https://saref.etsi.org/core/PropertyValue"
+              ],
+              "https://saref.etsi.org/core/hasValue": [
+                {
+                  "@value": "65.5\u00b0"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@id": "https://glaciation-project.eu/MetadataReferenceModel#/DiagonalFieldOfView",
+          "@type": [
+            "https://saref.etsi.org/core/Property"
+          ],
+          "https://saref.etsi.org/core/hasPropertyValue": [
+            {
+              "@type": [
+                "https://saref.etsi.org/core/PropertyValue"
+              ],
+              "https://saref.etsi.org/core/hasValue": [
+                {
+                  "@value": "100.6\u00b0"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@id": "https://glaciation-project.eu/MetadataReferenceModel#/Distortion",
+          "@type": [
+            "https://saref.etsi.org/core/Property"
+          ],
+          "https://saref.etsi.org/core/hasPropertyValue": [
+            {
+              "@type": [
+                "https://saref.etsi.org/core/PropertyValue"
+              ],
+              "https://saref.etsi.org/core/hasValue": [
+                {
+                  "@value": "<=1.5%"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@id": "https://w3id.org/dpv#Purpose",
+          "@type": [
+            "https://saref.etsi.org/core/Property"
+          ],
+          "https://saref.etsi.org/core/hasPropertyValue": [
+            {
+              "@type": [
+                "https://saref.etsi.org/core/PropertyValue"
+              ],
+              "https://saref.etsi.org/core/hasValue": [
+                {
+                  "@value": "Service Personalization"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@id": "https://w3id.org/dpv#DataController",
+          "@type": [
+            "https://saref.etsi.org/core/Property"
+          ],
+          "https://saref.etsi.org/core/hasPropertyValue": [
+            {
+              "@type": [
+                "https://saref.etsi.org/core/PropertyValue"
+              ],
+              "https://saref.etsi.org/core/hasValue": [
+                {
+                  "@value": "Service Provider 123"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@id": "https://w3id.org/dpv#LegalBasis",
+          "@type": [
+            "https://saref.etsi.org/core/Property"
+          ],
+          "https://saref.etsi.org/core/hasPropertyValue": [
+            {
+              "@type": [
+                "https://saref.etsi.org/core/PropertyValue"
+              ],
+              "https://saref.etsi.org/core/hasValue": [
+                {
+                  "@value": "Legal Obligation"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@id": "https://w3id.org/dpv#TechnicalAndOrganisationalMeasures",
+          "@type": [
+            "https://saref.etsi.org/core/Property"
+          ],
+          "https://saref.etsi.org/core/hasPropertyValue": [
+            {
+              "@type": [
+                "https://saref.etsi.org/core/PropertyValue"
+              ],
+              "https://saref.etsi.org/core/hasValue": [
+                {
+                  "https://w3id.org/dpv#AccessControl": [
+                    {
+                      "@value": "Biometric"
+                    }
+                  ],
+                  "https://w3id.org/dpv#DataMinimization": [
+                    {
+                      "@value": "Recording only necessary parts"
+                    }
+                  ],
+                  "https://w3id.org/dpv#Encryption": [
+                    {
+                      "@value": "RSA"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@id": "https://w3id.org/dpv#Rights",
+          "@type": [
+            "https://saref.etsi.org/core/Property"
+          ],
+          "https://saref.etsi.org/core/hasPropertyValue": [
+            {
+              "@type": [
+                "https://saref.etsi.org/core/PropertyValue"
+              ],
+              "https://saref.etsi.org/core/hasValue": [
+                {
+                  "@value": "Access"
+                },
+                {
+                  "@value": "Portability"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@id": "https://w3id.org/dpv#Risks",
+          "@type": [
+            "https://saref.etsi.org/core/Property"
+          ],
+          "https://saref.etsi.org/core/hasPropertyValue": [
+            {
+              "@type": [
+                "https://saref.etsi.org/core/PropertyValue"
+              ],
+              "https://saref.etsi.org/core/hasValue": [
+                {
+                  "@value": "System malfunction"
+                },
+                {
+                  "@value": "Data corruption"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@id": "http://www.w3.org/ns/odrl/2/Policy",
+          "@type": [
+            "https://saref.etsi.org/core/Property"
+          ],
+          "https://saref.etsi.org/core/hasPropertyValue": [
+            {
+              "@type": [
+                "https://saref.etsi.org/core/PropertyValue"
+              ],
+              "https://saref.etsi.org/core/hasValue": [
+                {
+                  "https://glaciation-project.eu/MetadataReferenceModel#duty": [
+                    {
+                      "https://glaciation-project.eu/MetadataReferenceModel#action": [
+                        {
+                          "@value": "source"
+                        }
+                      ]
+                    }
+                  ],
+                  "https://glaciation-project.eu/MetadataReferenceModel#permission": [
+                    {
+                      "https://glaciation-project.eu/MetadataReferenceModel#action": [
+                        {
+                          "@value": "distribute"
+                        }
+                      ],
+                      "https://glaciation-project.eu/MetadataReferenceModel#target": [
+                        {
+                          "@value": "image"
+                        }
+                      ]
+                    }
+                  ],
+                  "https://glaciation-project.eu/MetadataReferenceModel#prohibition": [
+                    {
+                      "https://glaciation-project.eu/MetadataReferenceModel#action": [
+                        {
+                          "@value": "sell"
+                        }
+                      ],
+                      "https://glaciation-project.eu/MetadataReferenceModel#target": [
+                        {
+                          "@value": "image"
+                        }
+                      ]
+                    }
+                  ],
+                  "https://glaciation-project.eu/MetadataReferenceModel#uid": [
+                    {
+                      "@value": "http://example.com/policy/7"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "https://saref.etsi.org/core/hasIdentifier": [
+    {
+      "@value": "robot_7"
+    }
+  ]
+}
+
