@@ -12,5 +12,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY workload/workloads/workload_human_object_interaction/workload_human_object_interaction.py /app/
 
 # Run the workload
-CMD ["python", "workload_human_object_interaction.py"]
+CMD ["python", "workload_human_object_interaction.py", "--url", "http://metadata-service.dkg-engine.svc.cluster.local/api/v0/graph"]
 

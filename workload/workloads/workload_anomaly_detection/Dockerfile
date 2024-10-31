@@ -12,5 +12,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY workload/workloads/workload_anomaly_detection/workload_anomaly_detection.py /app/
 
 # Run the workload
-CMD ["python", "workload_anomaly_detection.py"]
+CMD ["python", "workload_anomaly_detection.py", "--url", "http://metadata-service.dkg-engine.svc.cluster.local/api/v0/graph"]
 

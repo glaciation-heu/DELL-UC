@@ -98,6 +98,7 @@ def main(
     base_dir = os.path.expanduser(data_dir)
     
     # Iterate through each subdirectory
+    count = 0
     for subdir in subdirectories:
         subdir_path = os.path.join(base_dir, subdir)
         
@@ -105,6 +106,7 @@ def main(
         for filename in os.listdir(subdir_path):
             print(f'\nProcessing file: {filename}')
             if filename.endswith(".json"):
+                count += 1
                 file_path = os.path.join(subdir_path, filename)
                 
                 # Read the JSON file
@@ -131,11 +133,11 @@ def main(
                     print(f"Successfully sent {filename} from {subdir} to Apache NiFi.")
                 else:
                     print(f"Failed to send {filename} from {subdir}. Status code: {response.status_code}")
-
+                
             if test_mode:
                 break
     
-    print("All files processed.")
+    print(f"{count} files processed.")
 
 
 if __name__ == '__main__':
