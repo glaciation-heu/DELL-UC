@@ -38,21 +38,26 @@ def expand_json(jf: dict, robot_id: str):
     ## Process detections
     if 'detections' in jf:
         # Make measurement list
-        measurements = []
+        yolo_results = []
         for detection in jf['detections']:
-            for field in ['class', 'name', 'x1', 'x2', 'y1', 'y2']:
+            measurements = []
+            for field in ['class', 'name', 'confidence', 'x1', 'x2', 'y1', 'y2']:
                 measurements.append({
                     '@type': 'Measurement',
-                    'saref:hasValue': detection[field] if field in ['class', 'name'] else detection['bounding_box'][field],
+                    'saref:hasValue': detection[field] if field in ['class', 'name', 'confidence'] else detection['bounding_box'][field],
                     'saref:relatesToProperty': {'@id': jf['@context']['@vocab']+field, '@type': 'saref:Property'}
                 })
 
-        jf['hasSubResource'] = {
-            '@type': 'YOLO',
-            'rdfs:subClassOf': {'@type':'MeasuringResource'},
-            'makesMeasurement': measurements
-        }
+            yolo_results.append(
+                {
+                    '@type': 'YOLO',
+                    'rdf:subClassOf': {'@type':'MeasuringResource'},
+                    'makesMeasurement': measurements
+                }
+            )
 
+        # Make each YOLO results
+        jf['hasSubResource'] = yolo_results
         # Pop processed
         jf.pop('detections')
 
