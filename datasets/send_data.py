@@ -102,7 +102,7 @@ def expand_json(jf: dict, robot_id: str):
     # Add graph info so that usecase triples always being inserted into this graph
     graph = {}
     graph['@graph'] = [expanded]
-    graph['@id'] = UC2_GRAPH_URI
+    #graph['@id'] = UC2_GRAPH_URI
     # Add image, will be separated in Apache NiFi pipeline later
     graph['image_base64'] = temp_image_base64
 
@@ -133,17 +133,25 @@ def delete(jena_url: str):
     logger.debug(f'Query: {query}')
     sparql.setQuery(query)
     sparql.setReturnFormat(JSON)
-    results = sparql.query().convert()
+    
+    try:
+        results = sparql.query().convert()
+    except Exception as e:
+        logger.error(f'Error executing SPARQL SELECT query to JENA: {e}')
+        results = {'results': {'bindings':[]}}
 
     # Delete them
     if len(results['results']['bindings']) > 0:
         sparql.setMethod(POST)
         for result in results['results']['bindings']:
-            graph_uri = result['graph']['value']
-            drop_query = f'DROP GRAPH <{graph_uri}>'
-            logger.debug(f'Deleting graph URI: {graph_uri}, query: {drop_query}')
-            sparql.setQuery(drop_query)
-            sparql.query()
+            try:
+                graph_uri = result['graph']['value']
+                drop_query = f'DROP GRAPH <{graph_uri}>'
+                logger.debug(f'Deleting graph URI: {graph_uri}, query: {drop_query}')
+                sparql.setQuery(drop_query)
+                sparql.query()
+            except Exception as e:
+                logger.error(f'Error executing SPARQL DRAP Graph to JENA: {e}')
 
 
 def main(
@@ -216,13 +224,13 @@ if __name__ == '__main__':
         '--nifi_url', 
         type=str, 
         default='http://semantification.integration/contentListener',
-        help='ApacheNiFi content listener URL'
+        help='ApacheNiFi content listener URL, default: http://semantification.integration/contentListener'
     )
     parser.add_argument(
         '--jena_url',
         type=str,
         default='http://jena-fuseki.integration/slice',
-        help='ApacheJena prefix of endpoints'
+        help='ApacheJena prefix of endpoints, default: http://jena-fuseki.integration/slice'
     )
     parser.add_argument(
         '-t',
