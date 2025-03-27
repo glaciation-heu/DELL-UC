@@ -3,6 +3,7 @@ import os
 import sys
 import requests
 import json
+import time
 import logging
 
 from pyld import jsonld
@@ -121,6 +122,7 @@ def delete(jena_url: str):
         endpoint=query_endpoint,
         updateEndpoint=update_endpoint
     )
+    sparql.setTimeout(60)
     # Query for named graphs
     query = """
     SELECT DISTINCT ?graph
@@ -150,6 +152,7 @@ def delete(jena_url: str):
                 logger.debug(f'Deleting graph URI: {graph_uri}, query: {drop_query}')
                 sparql.setQuery(drop_query)
                 sparql.query()
+                time.sleep(2)
             except Exception as e:
                 logger.error(f'Error executing SPARQL DRAP Graph to JENA: {e}')
 
