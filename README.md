@@ -19,7 +19,7 @@
 This repository contains code and file related to UC2 data collection and workload generation.
 
 * Robot navigates a manufacturing site, using Computer Vision tools (YOLO) to generate object detection results
-* YOLO results (JSON files) are streamed into GLACIATION platform, more specifically, Apache NiFi data flow management tool running on the platform
+* YOLO results (JSON files) are streamed into GLACIATION platform, more specifically, semantification or [Apache NiFi data flow management tool](https://github.com/glaciation-heu/glaciation-semantification-service/blob/main/DESCRIPTION.md) running on the platform
 * Apache NiFi has a ```HTTPListening``` component to take the input and store the results into DKG
 * **Example Workload**: Construct images labeled with detected humans from stored results in DKG for manual evaluation
 * UC2 data/graphs stored in DKG needs to start with ```https://glaciation-project.eu/uc/2/```, so that it is not removed from DKG during periodical clean-up of DKG 
