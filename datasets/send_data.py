@@ -131,7 +131,7 @@ def delete(jena_url: str):
             ?s ?p ?o.
         }
     """
-    query += f'FILTER(STRSTARTS(STR(?graph), "{UC2_GRAPH_URI}"))' + '}'
+    query += f'FILTER(STRSTARTS(STR(?graph), "{UC2_GRAPH_URI}") && !STRSTARTS(STR(?graph), "{UC2_GRAPH_URI}/wl2"))' + '}'
     logger.debug(f'Query: {query}')
     sparql.setQuery(query)
     sparql.setReturnFormat(JSON)
