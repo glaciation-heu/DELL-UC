@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: opentraj-workload
+  labels:
+    app: opentraj
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: opentraj
+  template:
+    metadata:
+      labels:
+        app: opentraj
+    spec:
+      containers:
+      - name: opentraj-container
+        image: pournima2024/opentraj-workload:latest
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "4Gi"
+            cpu: "1"
+          limits:
+            memory: "8Gi"
+            cpu: "2"
+        volumeMounts:
+        - name: opentraj-datasets
+          mountPath: /app/OpenTraj/datasets
+        command: ["python", "Dell-UC2_OpenTraj_workload.py"]
+      volumes:
+      - name: opentraj-datasets
+        hostPath:
+          path: /mnt/data/DELL-UC/OpenTraj/datasets
+          type: Directory
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: opentraj-service
+spec:
+  selector:
+    app: opentraj
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: ClusterIP
+
